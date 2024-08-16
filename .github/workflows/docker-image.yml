@@ -31,4 +31,4 @@ jobs:
       run: docker tag glitchtip-apprise:${{ steps.vars.outputs.docker_tag }} glitchtip-apprise:latest
 
     - name: Push docker image
-      run: docker push --all-tags glitchtip-apprise:${{ steps.vars.outputs.docker_tag }}
+      run: docker push --all-tags glitchtip-apprise
