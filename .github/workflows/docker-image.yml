@@ -19,9 +19,16 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    
+
+    - name: Set tag var
+      id: vars
+      run: echo "docker_tag=$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}" >> $GITHUB_OUTPUT
+        
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag glitchtip-apprise:$(date +%s)
+      run: docker build . --file Dockerfile --tag glitchtip-apprise:${{ steps.vars.outputs.docker_tag }}
+
+    - name: Tag latest
+      run: docker tag glitchtip-apprise:${{ steps.vars.outputs.docker_tag }} glitchtip-apprise:latest
 
     - name: Push docker image
-      run: docker push glitchtip-apprise
+      run: docker push --all-tags glitchtip-apprise:${{ steps.vars.outputs.docker_tag }}
