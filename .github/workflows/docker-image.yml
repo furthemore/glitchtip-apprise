@@ -24,4 +24,4 @@ jobs:
       run: docker build . --file Dockerfile --tag glitchtip-apprise:$(date +%s)
 
     - name: Push docker image
-      run: docker push glitchtip-apprise:$(date +%s)
+      run: docker push glitchtip-apprise
