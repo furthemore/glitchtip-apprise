@@ -1,5 +1,5 @@
 # Use the Python base image
-FROM python3
+FROM python:3
 
 # Set a working directory
 WORKDIR /func
