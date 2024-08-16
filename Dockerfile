@@ -13,5 +13,9 @@ RUN pip install functions-framework
 # Install any dependencies of the function
 RUN pip install -r requirements.txt
 
+EXPOSE 8080
+
+ENV PYTHONUNBUFFERED=1
+
 # Run the function
 CMD ["functions-framework", "--target=main"]
