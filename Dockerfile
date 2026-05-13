@@ -1,5 +1,5 @@
 # Use the Python base image
-FROM python:3
+FROM python:3-alpine
 
 # Set a working directory
 WORKDIR /func
@@ -8,6 +8,7 @@ WORKDIR /func
 COPY . .
 
 # Install the Functions Framework
+RUN pip install --upgrade pip
 RUN pip install functions-framework
 
 # Install any dependencies of the function

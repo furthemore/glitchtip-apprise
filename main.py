@@ -25,8 +25,9 @@ def main(request):
         if activitySubtitle:
             body_text += f"{webhook_body['sections'][0]['activitySubtitle']}\n"
 
-        for field in first_attachment.get("fields", []):
-            body_text += f"{field['title']}: `{field['value']}`\n"
+        if first_attachment:
+            for field in first_attachment.get("fields", []):
+                body_text += f"{field['title']}: `{field['value']}`\n"
 
     sections = webhook_body.get("sections", [])
     for section in sections:
